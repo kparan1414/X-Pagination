@@ -21,7 +21,7 @@ function App() {
         console.log(data);
         setEmployees(data);
       })
-      .catch((err) => console.log("Error while fetching employees data", err));
+      .catch(() => alert("failed to fetch data"));
   }, []);
 
   useEffect(() => {
@@ -51,22 +51,26 @@ function App() {
     <div className="App">
       <h1>Employee Data Table</h1>
       <table id="table">
-        <tr>
-          <th>ID</th>
-          <th>Name</th>
-          <th>Email</th>
-          <th>Role</th>
-        </tr>
-        {filteredEmployees.map((employee) => {
-          return (
-            <tr key={employee.id}>
-              <td>{employee.id}</td>
-              <td>{employee.name}</td>
-              <td>{employee.email}</td>
-              <td>{employee.role}</td>
-            </tr>
-          );
-        })}
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Role</th>
+          </tr>
+        </thead>
+        <tbody>
+          {filteredEmployees.map((employee) => {
+            return (
+              <tr key={employee.id}>
+                <td>{employee.id}</td>
+                <td>{employee.name}</td>
+                <td>{employee.email}</td>
+                <td>{employee.role}</td>
+              </tr>
+            );
+          })}
+        </tbody>
       </table>
       <div className="navigation">
         <button className="navigation-btn" onClick={handlePrevious}>
